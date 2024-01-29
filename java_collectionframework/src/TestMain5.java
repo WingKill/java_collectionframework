@@ -54,8 +54,55 @@ public class TestMain5 {
 	public static void main(String[] args) {	
 		Scanner sc = new Scanner(System.in);
 		List<Student> stuList = new ArrayList<>();
-		String enter = sc.nextLine();
-		StringTokenizer string = new StringTokenizer(enter); 
+		System.out.println("학생 이름, 학과, 학번, 학점평균 입력하세요." + "\n");
+		for(int i = 0; i < 4; i++) {
+			try {
+				String enter = sc.nextLine();
+				StringTokenizer tokenizer = new StringTokenizer(enter,", ");
+				List<String> tokens = new ArrayList<String>();
+				while(tokenizer.hasMoreTokens()) {
+					tokens.add(tokenizer.nextToken());
+				}
+				Student student = 
+						new Student(tokens.get(0), tokens.get(1), tokens.get(2), Double.parseDouble( tokens.get(3)));
+				stuList.add(student);
+			} catch (Exception e) {
+				System.out.println("오류가 발생했습니다. 프로그램을 다시 실행하시기 바랍니다.");	
+				return;
+			}
+			
+		}			
+		
+		for(Student student : stuList) {
+			System.out.println("-------------------------");
+			System.out.println();
+			System.out.println("이름 : " + student.getName());
+			System.out.println();
+			System.out.println("학과 : " + student.getMajor());
+			System.out.println();
+			System.out.println("학번 : " + student.getStudentID());
+			System.out.println();
+			System.out.println("학점평균 : " + student.getGradeAvg());
+			System.out.println("-------------------------");
+		}
+		
+		while(true) {
+			try {
+				System.out.println("\n"+"학생 이름 >> ");
+				String name = sc.next();
+				if(name.equals("그만"))
+					break;
+				for(Student student : stuList) {
+					if(name.equals(student.getName())) {
+						System.out.println(student.getName()+", " + student.getMajor() 
+						+ ", "+student.getStudentID() + ", " + student.getGradeAvg());
+					}
+				}
+			} catch (Exception e) {
+				continue;
+			}			
+		}
+		sc.close();
 	}
 }
 
