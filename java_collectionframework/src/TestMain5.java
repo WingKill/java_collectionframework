@@ -64,7 +64,10 @@ public class TestMain5 {
 					tokens.add(tokenizer.nextToken());
 				}
 				Student student = 
-						new Student(tokens.get(0), tokens.get(1), tokens.get(2), Double.parseDouble( tokens.get(3)));
+						new Student(tokens.get(0), 
+								tokens.get(1),
+								tokens.get(2), 
+								Double.parseDouble( tokens.get(3)));
 				stuList.add(student);
 			} catch (Exception e) {
 				System.out.println("오류가 발생했습니다. 프로그램을 다시 실행하시기 바랍니다.");	
